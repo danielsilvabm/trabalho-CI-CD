@@ -108,7 +108,7 @@ jobs:
       
       - name: Notificar Discord se falhar
         if: failure()
-        uses: Ilshidur/action-discord@v2
+        uses: Ilshidur/action-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           message: " Deploy falhou no GitHub Actions para o projeto HTML/CSS!"
