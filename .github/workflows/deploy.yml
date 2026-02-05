@@ -105,11 +105,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      
-      - name: Notificar Discord se falhar
-        if: failure()
-        uses: appleboy/discord-action@v0.1.2
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          message: " Deploy falhou no GitHub Actions para o projeto HTML/CSS!"
 
