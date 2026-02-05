@@ -21,11 +21,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout do código
+      
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 2. Verificar se index.html existe na raiz
+      
       - name: Verificar index.html
         run: |
           if [ ! -f "index.html" ]; then
@@ -33,15 +33,15 @@ jobs:
             exit 1
           fi
 
-      # 3. Instalar HTMLHint (linter)
+      
       - name: Instalar HTMLHint
         run: npm install -g htmlhint
 
-      # 4. Validar HTML
+      
       - name: Rodar HTMLHint
         run: htmlhint "**/*.html"
 
-      # 5. Verificar arquivos > 500KB
+      
       - name: Verificar arquivos grandes
         run: |
           find . -type f -size +500k | while read file; do
@@ -49,7 +49,7 @@ jobs:
             exit 1
           done || true
 
-      # 6. Verificar TODO, FIXME, senha e password
+      
       - name: Verificar termos sensíveis
         run: |
           # Busca somente em arquivos HTML, CSS e JS
@@ -58,7 +58,7 @@ jobs:
             exit 1
           fi
 
-      # 7. Verificar links e imagens
+      
       - name: Validar links e imagens
         run: |
           urls=$(grep -Eo '<(a|img)[^>]+(href|src)="[^"]+"' **/*.html | grep -Eo '(href|src)="[^"]+"' | cut -d'"' -f2)
@@ -78,7 +78,7 @@ jobs:
           done
 
   
-  # Job 2: CD - Deploy para GitHub Pages
+  
   
   deploy:
     runs-on: ubuntu-latest
