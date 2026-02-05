@@ -52,7 +52,8 @@ jobs:
       # 6. Verificar TODO, FIXME, senha e password
       - name: Verificar termos sensíveis
         run: |
-          if grep -R -i -e "TODO" -e "FIXME" -e "senha" -e "password" .; then
+          # Busca somente em arquivos HTML, CSS e JS
+          if grep -R -i -E "TODO|FIXME|senha|password" --include=\*.html --include=\*.css --include=\*.js .; then
             echo "ERRO: Comentários ou termos sensíveis encontrados!"
             exit 1
           fi
